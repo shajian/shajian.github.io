@@ -1118,7 +1118,7 @@ a.article-title:hover {
   border-color: #ddd;
   border-width: 1px 0;
   overflow: auto;
-  color: #2d2d2d;
+  color: #657b83;
   line-height: 24px;
 }
 .article-entry .highlight .gutter pre,
