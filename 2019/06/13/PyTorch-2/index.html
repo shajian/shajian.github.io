@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="SJJ">
 <meta property="og:description" content="torch installization依然采取自顶向下的原则剖析，借助PyTorch的python接口。我们知道使用PyTorch第一步都是 1import torch  于是阅读torch/init.py，发现需要加载torch._C这个库，但是需要以（RTLD_GLOBAL|RTLD_LAZY）这个模式动态加载，于是先将动态加载模式设置到（RTLD_GLOBAL|RTLD_LAZY）之后加载">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-13T03:55:11.536Z">
+<meta property="og:updated_time" content="2019-06-13T04:01:44.456Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PyTorch-2">
 <meta name="twitter:description" content="torch installization依然采取自顶向下的原则剖析，借助PyTorch的python接口。我们知道使用PyTorch第一步都是 1import torch  于是阅读torch/init.py，发现需要加载torch._C这个库，但是需要以（RTLD_GLOBAL|RTLD_LAZY）这个模式动态加载，于是先将动态加载模式设置到（RTLD_GLOBAL|RTLD_LAZY）之后加载">
@@ -266,7 +266,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  torch::nn::init_THNN(module);</span><br><span class="line">#ifdef USE_CUDA</span><br><span class="line">  torch::nn::init_THCUNN(module);</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
 
 <p>函数定义位于文件torch/csrc/nn目录下的THNN.cpp和THCUNN.cpp文件中，这两个文件是生成 torch_python 这个TARGET时使用 tools/setup_helpers/generate_code.py这个脚本生成的，具体参见 torch/CMakeLists.txt。</p>
-<p>torch.<em>C模块初始化过程到这里就完成了。回到 `torch/<em>_init</em></em>.py`，继续看看 import torch时接下来做了哪些事情：</p>
+<p><code>torch._C</code>模块初始化过程到这里就完成了。回到 <code>torch/__init__.py</code>，继续看看 import torch时接下来做了哪些事情：</p>
 <ol>
 <li><p>定义了模块函数 typename，is_tensor，is_storage等</p>
 </li>
