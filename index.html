@@ -50,7 +50,7 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Hexo-Sync" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     
   </div>
@@ -61,37 +61,57 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/12/hello-world/">Hello World</a>
+      <a class="article-title" href="/2019/06/13/Hexo-Sync/">Hexo Sync</a>
     </h1>
   
 
-        <a href="/2019/06/12/hello-world/" class="article-date">
-  <time datetime="2019-06-12T12:24:01.861Z" itemprop="datePublished">2019-06-12</time>
+        <a href="/2019/06/13/Hexo-Sync/" class="article-date">
+  <time datetime="2019-06-13T01:57:11.000Z" itemprop="datePublished">2019-06-13</time>
 </a>
       </header>
     
     <div class="article-entry-abstract" itemprop="articleBody">
       
-        <!--<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <!--<p>场景：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在A, B两台电脑上同步Hexo博客</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>假设在 computer B 上已经初次建立hexo博客 <a href="https://shajian.github.io，" target="_blank" rel="noopener">https://shajian.github.io，</a> computer B 本地的文件夹（hexo部署环境目录）为 path/to/myblog，其内部文件/目录如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">_config.yml</span><br><span class="line">db.json</span><br><span class="line">node_modules</span><br><span class="line">package.json</span><br><span class="line">package-lock.json</span><br><span class="line">public</span><br><span class="line">scaffolds</span><br><span class="line">source</span><br><span class="line">themes</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>在github仓库 shajian.github.io 上新建branch，比如”hexo”，这样，”mater”主分支用于维护hexo生成的静态博客文件/目录，”hexo”分支用于维护hexo部署环境下的所有文件/目录。</p>
+<p>在 computer A 上 clone 这个仓库，并切换到 hexo 分支，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github/shajian/shajian.github.io.git</span><br><span class="line">$ cd shajian.github.io</span><br><span class="line">$ git checkout hexo</span><br><span class="line">$ git branch</span><br><span class="line">*hexo</span><br><span class="line"> master</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>将目录 shajian.github.io 内的所有文件/目录全部删除，然后将 path/to/myblog内的全部内容复制过来，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ rm -rf .</span><br><span class="line">$ cp path/to/myblog/* ./</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>然后可在使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init &quot;&lt;title&gt;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>写新文章或直接去source/_posts下修改已有文章，然后提交到仓库的hexo分支，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br><span class="line">$ git commit -m &quot;new post &apos;title&apos;&quot;</span><br><span class="line">$ git push origin hexo</span><br></pre></td></tr></table></figure>
+
+<p>部署</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
+
+<p>然后就可以去 <a href="https://shajian.github.io" target="_blank" rel="noopener">https://shajian.github.io</a> 浏览本地新增/修改文章内容了。</p>
+<p>在 computer B 上删除 path/to/myblog 目录，然后重新 clone 仓库，并切换到 hexo 分支，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github/shajian/shajian.github.io.git</span><br><span class="line">$ cd shajian.github.io</span><br><span class="line">$ git checkout hexo</span><br></pre></td></tr></table></figure>
+
+<p>此时，要修改还是新增文章，步骤均与上面 computer A上的操作一致。</p>
+<p>computer A 和 B 本地均有仓库后，以后每次修改还是新增文章，首先需要将仓库更新到最新</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">$ git pull origin master</span><br><span class="line">$ git checkout hexo</span><br><span class="line">$ git pull origin hexo</span><br></pre></td></tr></table></figure>
+
+<p>切换到 hexo 分支后，可以进行修改和新增文章了。</p>
 -->
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="https://shajianjian.github.io/2019/06/12/hello-world/" data-id="cjwt8mlna0000r4vcbam0ziai" class="article-share-link">Share</a>-->
+      <!--<a data-url="https://shajianjian.github.io/2019/06/13/Hexo-Sync/" data-id="cjwu0olfg0000wsvcif9cnmvs" class="article-share-link">Share</a>-->
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
+
     </footer>
   </div>
   
@@ -102,6 +122,10 @@
     <article id="post-PyTorch-1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/DL-Framework/">DL Framework</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -296,6 +320,8 @@
       <!--<a data-url="https://shajianjian.github.io/2019/06/12/PyTorch-1/" data-id="cjwt8mlnx0001r4vckborelhl" class="article-share-link">Share</a>-->
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PyTorch/">PyTorch</a></li></ul>
+
     </footer>
   </div>
   
