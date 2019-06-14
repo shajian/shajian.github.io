@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
 
   
-  <title>GIOU | SJJ</title>
+  <title>GIoU | SJJ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="论文 Generalized Intersection over Union: A Metric and A Loss for Bounding Box Regression 摘要IoU 是目标检测benchmarks中使用最广的评估指标，然而，优化回归bbox参数的距离损失并不等价于最大化IoU指标。对于轴对齐的2D bbox，IoU 可直接用作回归损失，但是 IoU 无法优化无重叠的bbox，">
 <meta name="keywords" content="object detection">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GIOU">
-<meta property="og:url" content="https://shajianjian.github.io/2019/06/13/GIOU/index.html">
+<meta property="og:title" content="GIoU">
+<meta property="og:url" content="https://shajianjian.github.io/2019/06/13/GIoU/index.html">
 <meta property="og:site_name" content="SJJ">
 <meta property="og:description" content="论文 Generalized Intersection over Union: A Metric and A Loss for Bounding Box Regression 摘要IoU 是目标检测benchmarks中使用最广的评估指标，然而，优化回归bbox参数的距离损失并不等价于最大化IoU指标。对于轴对齐的2D bbox，IoU 可直接用作回归损失，但是 IoU 无法优化无重叠的bbox，">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://shajianjian.github.io/.io//fig1.png">
 <meta property="og:image" content="https://shajianjian.github.io/.io//fig2.png">
-<meta property="og:updated_time" content="2019-06-14T10:59:55.870Z">
+<meta property="og:updated_time" content="2019-06-14T12:27:50.540Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GIOU">
+<meta name="twitter:title" content="GIoU">
 <meta name="twitter:description" content="论文 Generalized Intersection over Union: A Metric and A Loss for Bounding Box Regression 摘要IoU 是目标检测benchmarks中使用最广的评估指标，然而，优化回归bbox参数的距离损失并不等价于最大化IoU指标。对于轴对齐的2D bbox，IoU 可直接用作回归损失，但是 IoU 无法优化无重叠的bbox，">
 <meta name="twitter:image" content="https://shajianjian.github.io/.io//fig1.png">
   
@@ -31,10 +31,11 @@
   
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700&amp;subset=korean" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
+  <!-- <link href="https://cdn.bootcss.com/KaTeX/0.7.1/katex.min.css" rel="stylesheet"> --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 </html>
 <body>
-  <div id="container">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
       <header id="header">
   <!--<div id="banner"></div>-->
@@ -56,7 +57,7 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-GIOU" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-GIoU" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     
   </div>
@@ -67,7 +68,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      GIOU
+      GIoU
     </h1>
   
 
@@ -80,6 +81,8 @@
 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>在很多2D/3D 计算机视觉任务中，bbox 回归是最基本的组成之一。例如目标定位，多目标检测，目标跟踪以及实例分割，均依赖准确的bbox回归。提升性能的主流趋势是使用深度神经网络，然而，还有一种提升方法被广泛忽略，那就是使用基于 IoU 的指标损失来代替传统的回归损失如 $l_1, l_2$ 等。</p>
 <p>IoU 将要比较的目标的形状属性例如 bbox 的宽、高和位置等信息编码成区域属性，并基于面积（体积）计算出一个归一化的值。语义分割、目标检测和跟踪等任务中的性能测量均采用IoU作为测量指标。</p>
 <p>然而，最小化损失如$$l_n$$范数与提高IoU并不是强相关。考虑一个2D场景，如图1(a)，<br><img src="/.io//fig1.png" alt></p>
+<!-- <img src="/2019/06/13/GIoU/fig1.png" title="This figure 1"> -->
+
 <p>预测box（黑矩形）和gt box（绿矩形）均由左上角和右下角坐标表示$(x_1,y_1,x_2,y_2)$，为简单起见，我们令两个box的其中一个corner的距离（例如$l_2$范数）固定，于是，以 gt box 另一个 corner 为圆心，某半径长的圆，无论预测 box 的另一个 corner 的坐标，只要其位于这个圆上，其 $l_2$ 距离均保持不变；然而IoU却不同。这个问题可以延伸到其他损失和bbox表示上，例如图1(b)。</p>
 <p>直觉而言，这些类型的损失的一个较好的局部最优解可能并非 IoU 的局部最优解。而且，与 IoU 不同的是，$l_n$ 不具有尺度不变性，相同重叠程度的几对 bbox，其损失值各不相同。另外，一些 bbox 的表示方法，由于没有对不同类型的表示参数进行正则处理，使得这个问题更加严重。例如在 center+size 表示法中，$(x_c,y_c)$ 是中心坐标，$(w,h)$ 是 box size。当表示参数变多时，如旋转度，复杂度继续上升。</p>
 <p>为了解决这些问题，sota 检测器引入了 anchor 的概念，并使用了非线性表示方法简单地处理尺度问题（例如，faster-rcnn中坐标偏差的计算）。但即使使用了这些手工设计，优化回归损失和IoU值依然存在偏差。</p>
@@ -188,7 +191,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://shajianjian.github.io/2019/06/13/GIOU/" data-id="cjwvzdcay0003wkvc82mxpid1" class="article-share-link">Share</a>
+      <a data-url="https://shajianjian.github.io/2019/06/13/GIoU/" data-id="cjww2kh1e0004j8vcp4nvor6b" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/object-detection/">object detection</a></li></ul>
@@ -198,6 +201,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2019/06/14/CenterNet/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-caption">Newer</span>
+      <div class="article-nav-title">
+        
+          CenterNet
+        
+      </div>
+    </a>
   
   
     <a href="/2019/06/13/PyTorch-2/" id="article-nav-older" class="article-nav-link-wrap">
@@ -245,6 +257,23 @@
 
 
 
-  </div>
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src>
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>
