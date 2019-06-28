@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="SJJ">
 <meta property="og:description" content="总结 CV 中的一些概念和操作。 RF第 k layer 上的感受野大小为$$l_k=l_{k-1}+[(f_k-1)\prod_{i=0}^{k-1}s_i]$$其中，$s_i$ 为第 i layer 上卷积的步幅，$f_k$ 为第 k layer 上卷积核大小，$l_0=1, \ s_0=1$。 NMS以 Faster R-CNN 为例，Test 阶段时，ProposalLayer 生成密集均">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-28T08:02:03.215Z">
+<meta property="og:updated_time" content="2019-06-28T09:25:13.240Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CV 中的常用方法总结">
 <meta name="twitter:description" content="总结 CV 中的一些概念和操作。 RF第 k layer 上的感受野大小为$$l_k=l_{k-1}+[(f_k-1)\prod_{i=0}^{k-1}s_i]$$其中，$s_i$ 为第 i layer 上卷积的步幅，$f_k$ 为第 k layer 上卷积核大小，$l_0=1, \ s_0=1$。 NMS以 Faster R-CNN 为例，Test 阶段时，ProposalLayer 生成密集均">
@@ -401,7 +401,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-28 16:02:03" itemprop="dateModified" datetime="2019-06-28T16:02:03+08:00">2019-06-28</time>
+                <time title="修改时间：2019-06-28 17:25:13" itemprop="dateModified" datetime="2019-06-28T17:25:13+08:00">2019-06-28</time>
               
             
           </span>
@@ -477,8 +477,11 @@
 <p><strong>return</strong> $\mathcal {D,S}$</p>
 <p>现在来看 Soft-NMS 中的得分衰减因子 f 函数，首先无论 NMS 还是 Soft-NMS，我们都可以统一可将 box 的得分修改为 $s_i=s_i f(i)$，其中 f 函数为，</p>
 <ol>
-<li>NMS<br>$$f(i) = \begin{cases} 1 &amp; iou(\mathcal M, b_i) &lt; N_t \ 0 &amp; iou(\mathcal M, b_i) \ge N_t\end{cases}$$</li>
-<li>Soft-NMS<br>$$f(i) = \begin{cases} 1 &amp; iou(\mathcal M, b_i) &lt; N_t \ 1-iou(\mathcal M, b_i) &amp; iou(\mathcal M, b_i) \ge N_t \end{cases}$$<br>可见，靠的越近 iou 越大，得分衰减的越厉害。但是这个式子中函数值在 iou=N<sub>t</sub> 处附近不连续，可使用高斯惩罚函数，<br>$$f(i)=e^{-\frac {iou(\mathcal M, b_i)^2} \sigma}, \ \forall b_i \notin \mathcal D$$<br>在 iou=0 时取得最大值，参数 $\sigma$ 控制衰减速度，$\sigma$ 越小表示得分随 iou 增大而衰减越快。</li>
+<li><p>NMS<br>$$f(i) = \begin{cases} 1 &amp; iou(\mathcal M, b_i) &lt; N_t \ 0 &amp; iou(\mathcal M, b_i) \ge N_t\end{cases}$$</p>
+</li>
+<li><p>Soft-NMS</p>
+<p>$$f(i) = \begin{cases} 1 &amp; iou(\mathcal M, b_i) &lt; N_t \ 1-iou(\mathcal M, b_i) &amp; iou(\mathcal M, b_i) \ge N_t \end{cases}$$<br>可见，靠的越近 iou 越大，得分衰减的越厉害。但是这个式子中函数值在 iou=N<sub>t</sub> 处附近不连续，可使用高斯惩罚函数，<br>$$f(i)=e^{-\frac {iou(\mathcal M, b_i)^2} \sigma}, \ \forall b_i \notin \mathcal D$$<br>在 iou=0 时取得最大值，参数 $\sigma$ 控制衰减速度，$\sigma$ 越小表示得分随 iou 增大而衰减越快。</p>
+</li>
 </ol>
 <h1 id="Deconvolution"><a href="#Deconvolution" class="headerlink" title="Deconvolution"></a>Deconvolution</h1><p>在很多 CV 任务例如 semantic segmentation 中，需要上采样，简单的上采样可以使用 bilinear interpolation，但有时为了得到更好的上采样结果会使用反卷积。<br>(to be continued…)</p>
 
