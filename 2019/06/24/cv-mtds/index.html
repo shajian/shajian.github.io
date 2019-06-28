@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="SJJ">
 <meta property="og:description" content="总结 CV 中的一些概念和操作。 RF第 k layer 上的感受野大小为$$l_k=l_{k-1}+[(f_k-1)\prod_{i=0}^{k-1}s_i]$$其中，$s_i$ 为第 i layer 上卷积的步幅，$f_k$ 为第 k layer 上卷积核大小，$l_0=1, \ s_0=1$。 NMS以 Faster R-CNN 为例，Test 阶段时，ProposalLayer 生成密集均">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-25T03:44:11.150Z">
+<meta property="og:updated_time" content="2019-06-28T08:02:03.215Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CV 中的常用方法总结">
 <meta name="twitter:description" content="总结 CV 中的一些概念和操作。 RF第 k layer 上的感受野大小为$$l_k=l_{k-1}+[(f_k-1)\prod_{i=0}^{k-1}s_i]$$其中，$s_i$ 为第 i layer 上卷积的步幅，$f_k$ 为第 k layer 上卷积核大小，$l_0=1, \ s_0=1$。 NMS以 Faster R-CNN 为例，Test 阶段时，ProposalLayer 生成密集均">
@@ -401,7 +401,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-25 11:44:11" itemprop="dateModified" datetime="2019-06-25T11:44:11+08:00">2019-06-25</time>
+                <time title="修改时间：2019-06-28 16:02:03" itemprop="dateModified" datetime="2019-06-28T16:02:03+08:00">2019-06-28</time>
               
             
           </span>
@@ -457,11 +457,11 @@
 <p><strong>Input</strong></p>
 <ul>
 <li>$\mathcal B={b_1,…,b_N}, \mathcal S = {s_1,…,S_N}, N_t, m$</li>
-<li>分别表示初始检测 boxes，相应的 scores，NMS 阈值（0.7），以及 m=1: NMS; m=2: Soft-NMS</li>
+<li>分别表示初始检测 boxes，相应的 scores，NMS 阈值（0.7）， $m=1 \rightarrow \text{NMS}; \ m=2\rightarrow \text{Soft-NMS}$</li>
 </ul>
 <p>$\mathcal D \leftarrow {}$</p>
-<p><strong>while</strong> $\mathcal B \ne \empty$ <strong>do</strong></p>
-<p>&emsp; &emsp; $m \leftarrow \argmax \mathcal S$</p>
+<p><strong>while</strong> $\mathcal B \ne \varnothing$ <strong>do</strong></p>
+<p>&emsp; &emsp; $m \leftarrow \arg \max \mathcal S$</p>
 <p>&emsp; &emsp; $\mathcal M \leftarrow b_m$</p>
 <p>&emsp; &emsp; $\mathcal D \leftarrow \mathcal {D \cup M}; \mathcal B \leftarrow \mathcal{B-M}$</p>
 <p>&emsp; &emsp; <strong>for</strong> $b_i \in \mathcal B$ <strong>do</strong></p>
@@ -601,7 +601,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
