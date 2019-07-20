@@ -106,7 +106,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://shajianjian.github.io/images/DetNet_fig1.png">
 <meta property="og:image" content="https://shajianjian.github.io/images/DetNet_fig2.png">
-<meta property="og:updated_time" content="2019-07-20T10:36:00.014Z">
+<meta property="og:updated_time" content="2019-07-20T10:39:37.332Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DetNet">
 <meta name="twitter:description" content="论文 DetNet: A Backbone network for Object Detection 本文创作动机是当前大多数的目标检测器都是在 ImageNet 上预训练后 finetune 到目标检测集，目标检测器的 backbone 原本是为了图像分类任务而设计的，这样的 backbone 显然不是最佳的，较大的下采样率带来较大的感受野 RF，这对图像分类是有益的，对目标检测尤其是小目标而言">
@@ -404,7 +404,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-20 18:36:00" itemprop="dateModified" datetime="2019-07-20T18:36:00+08:00">2019-07-20</time>
+                <time title="修改时间：2019-07-20 18:39:37" itemprop="dateModified" datetime="2019-07-20T18:39:37+08:00">2019-07-20</time>
               
             
           </span>
@@ -474,17 +474,17 @@
 <tr>
 <td align="center">conv2_x</td>
 <td align="center">56x56</td>
-<td align="center">$\begin{bmatrix} 1 \times 1, 64 \\ 3 \times 3, 64 \\ 1 \times 1, 256\end{bmatrix} \times 3$</td>
+<td align="center">$\begin{bmatrix} 1 \times 1 &amp; 64 \\ 3 \times 3 &amp; 64 \\ 1 \times 1 &amp; 256\end{bmatrix} \times 3$</td>
 </tr>
 <tr>
 <td align="center">conv3_x</td>
 <td align="center">28x28</td>
-<td align="center">$\begin{bmatrix} 1 \times 1, 128 \\ 3 \times 3, 128 \\ 1 \times 1, 512\end{bmatrix} \times 4$</td>
+<td align="center">$\begin{bmatrix} 1 \times 1 &amp; 128 \\ 3 \times 3 &amp; 128 \\ 1 \times 1 &amp; 512\end{bmatrix} \times 4$</td>
 </tr>
 <tr>
 <td align="center">conv4_x</td>
 <td align="center">14x14</td>
-<td align="center">$\begin{bmatrix} 1 \times 1, 256 \\ 3 \times 3, 256 \\ 1 \times 1, 1024\end{bmatrix} \times 6$</td>
+<td align="center">$\begin{bmatrix} 1 \times 1 &amp; 256 \\ 3 \times 3 &amp; 256 \\ 1 \times 1 &amp; 1024\end{bmatrix} \times 6$</td>
 </tr>
 </tbody></table>
 <p>从第五个 stage 开始介绍 DetNet，如图 2 D 所示，DetNet-59 的设计细节如下：<br><img src="/images/DetNet_fig2.png" alt><center>fig 2. DetNet 的结构细节</center></p>
