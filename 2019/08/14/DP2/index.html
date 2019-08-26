@@ -104,10 +104,12 @@
 <meta property="og:site_name" content="SJJ">
 <meta property="og:description" content="上一篇文章 Dynamic Programming (1) 介绍了动态规划的原理，以及几种常见模型的 DPFE。这篇文章则主要介绍一些实际应用。 最佳分配问题 ALLOT最佳分配问题简称为 ALLOT，描述了如何讲有限资源分配给一些用户，损失（或者利益，损失对应最小化，利益对应最大化）与用户以及分配到的资源量有关。ALLOT 也可以看作是背包问题 KSINT 的一个变种。 假设有 M 单位的资源要">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-21T06:05:00.380Z">
+<meta property="og:image" content="https://shajianjian.github.io/images/DP2_fig1.png">
+<meta property="og:updated_time" content="2019-08-23T06:10:59.356Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dynamic Programming (2)">
 <meta name="twitter:description" content="上一篇文章 Dynamic Programming (1) 介绍了动态规划的原理，以及几种常见模型的 DPFE。这篇文章则主要介绍一些实际应用。 最佳分配问题 ALLOT最佳分配问题简称为 ALLOT，描述了如何讲有限资源分配给一些用户，损失（或者利益，损失对应最小化，利益对应最大化）与用户以及分配到的资源量有关。ALLOT 也可以看作是背包问题 KSINT 的一个变种。 假设有 M 单位的资源要">
+<meta name="twitter:image" content="https://shajianjian.github.io/images/DP2_fig1.png">
 
 
 
@@ -401,7 +403,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-21 14:05:00" itemprop="dateModified" datetime="2019-08-21T14:05:00+08:00">2019-08-21</time>
+                <time title="修改时间：2019-08-23 14:10:59" itemprop="dateModified" datetime="2019-08-23T14:10:59+08:00">2019-08-23</time>
               
             
           </span>
@@ -490,6 +492,10 @@
 <p>ARC为，给定一个具有构造成本（权值）的节点序列，目标是构造一棵成本最小的树，整棵树的总成本为所有内部节点（internal nodes，包括 root）的成本之和，内部节点的损失为以此内部节点为根节点的子树中所有叶节点的成本之和。给定 $S=(w_0,w_1,…,w_{n-1})$ 为有序序列表示叶节点的权值，定义 $(i,j)$ 的态为 $(w_i,…,w_j)$，那么<br>$$f(i,j)=\min_{}{c(i,j,d)+f(i,d)+f(d+1,j)}, \quad i&lt;j \qquad(2.8)$$<br>其中 $f(i,j)$ 表示以节点 $(i,…,j)$ 为叶节点的子树总成本， $c(i,j,d)=\sum_{k=i}^j w_k$ 表示这个子树的根节点的成本，这里我们限制为二叉树，所以不难理解式 (2.8)，树的总成本为左子树的总成本与右子树的总成本以及树根节点成本三者之和。d 用于划分，其中 $(i,…,d)$ 为左子树的叶节点，$(d+1,…,j)$ 为右子树的叶节点，无论怎么划分（即选择任何 d 的有效值），以 $(i,…,j)$ 为叶节点的子树的根节点成本 $c(i,j,d)$ 均保持不变。</p>
 <p>最后，目标是计算 $f(0,n-1)$，基本条件为 $f(i,i)=0, \ \forall i \in {0,1,…,n-1}$。</p>
 <p>构造 ARC 比构造 Huffman 树多一个限制，那就是给定节点序列后，只能结合两个相邻节点构造一个子树。例如，$S=(1,2,3,4)$，最优树为 $(((1,2),3),4)$，$f(S)=3+6+10=19$（三个内部节点成本之和），再例如 $S=(2,3,3,4)$，那么最优树为 $((2,3),(3,4))$，$f(S)=5+7+12=24$。</p>
+<h2 id="装配线平衡问题-ASMBAL"><a href="#装配线平衡问题-ASMBAL" class="headerlink" title="装配线平衡问题 ASMBAL"></a>装配线平衡问题 ASMBAL</h2><p>一个产品装配需要经过一系列的处理，每个处理步骤均有代价/损失，并且从一个处理站到另一个处理站之间也存在代价。这里举一个简单的例子进行说明，一个处理站看作一条处理线，一次处理为一个阶段 stage，转移发生在从 阶段 k，处理线 i 的节点到另一个位于阶段 k+1 处理线 j 的节点上。处理线之间的切换损失为 c(k,i,j)，通常 c(k,i,i)=0，即不切换处理线，那么切换损失应为 0，除了切换损失，每个节点自身还存在损失，初始状态 s 和终止状态 t 处于标记为 0 的处理线上，这只是为了说明初始时刻和终止时刻产品不应该在任何处理线上，初始决策的损失为 c(0,0,j)，最终决策的损失为 c(N,j,0)（j 为某个处理线）。 </p>
+<p>某种可行的处理使用一个节点表示，记节点标号为 0~13 共 14 个节点，其中特别地 0 和 13 分别表示起始状态和终止状态，即表示不用处理。假设 14 个节点自身的损失分别为<br>$$v=(0,7,8,9,5,3,6,4,8,5,4,7,0)$$<br>处理线之间的切换损失如下图，<br><img src="/images/DP2_fig1.png" alt></p>
+<p>也可以写成 14x14 的毗邻矩阵。可见，总共有两条处理线。</p>
+<p>在阶段 k，从 i 线到 j 线的损失由两部分组成 $R(k,i,j)=v(k,i)+c(k,i,j)$，DPFE 为<br>$$f(k,i)=\min_j {R(k,i,j)+f(k+1,j)}$$<br>其中 $f(k,i)$ 表示从阶段 k 并处于线 i 上开始到最终态的损失，问题的目标就是求 $f(0,0)$，基本条件为 $f(k,i)=0, k &gt; N$，N 为总阶段数，图中为 N=6。计算过程如下：<br>$$\begin{aligned} f(0,0)=\min {R(0,0,0)+f(1,0), R(0,0,1)+f(1,1)}<br>\\ f(1,0)=\min {R(1,0,0)+f(2,0), R(1,0,1)+f(2,1)}<br>\\ f(1,1)=\min {R(1,1,0)+f(2,0), R(1,1,1)+f(2,1)}<br>\\ \cdots \ (omitted)<br>\end{aligned}$$</p>
 
       
     </div>
@@ -704,7 +710,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#最佳分配问题-ALLOT"><span class="nav-number">1.</span> <span class="nav-text">最佳分配问题 ALLOT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所有结点对的最短路径问题-APSP"><span class="nav-number">2.</span> <span class="nav-text">所有结点对的最短路径问题 APSP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最优字母基数编码树问题-ARC"><span class="nav-number">3.</span> <span class="nav-text">最优字母基数编码树问题 ARC</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#最佳分配问题-ALLOT"><span class="nav-number">1.</span> <span class="nav-text">最佳分配问题 ALLOT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所有结点对的最短路径问题-APSP"><span class="nav-number">2.</span> <span class="nav-text">所有结点对的最短路径问题 APSP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最优字母基数编码树问题-ARC"><span class="nav-number">3.</span> <span class="nav-text">最优字母基数编码树问题 ARC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装配线平衡问题-ASMBAL"><span class="nav-number">4.</span> <span class="nav-text">装配线平衡问题 ASMBAL</span></a></li></ol></div>
             
 
           </div>

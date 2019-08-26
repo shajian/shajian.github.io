@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="SJJ">
 <meta property="og:description" content="在 PyTorch-2 我们已经了解了 torch 包的初始化过程，接下来便可以愉快查看这个 package 包含哪些字段（包含函数和类）了，再参照 PyTorch 的官方文档，了解其中各个函数的具体实现。 torch 包从 torch/__init__.py 中可以查看所有的 torch 包的所有字段，包括：  直接在此文件中定义的函数/字段，如 typename, is_tensor, is_">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-22T06:13:33.708Z">
+<meta property="og:updated_time" content="2019-08-26T07:43:50.509Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PyTorch-3">
 <meta name="twitter:description" content="在 PyTorch-2 我们已经了解了 torch 包的初始化过程，接下来便可以愉快查看这个 package 包含哪些字段（包含函数和类）了，再参照 PyTorch 的官方文档，了解其中各个函数的具体实现。 torch 包从 torch/__init__.py 中可以查看所有的 torch 包的所有字段，包括：  直接在此文件中定义的函数/字段，如 typename, is_tensor, is_">
@@ -401,7 +401,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-22 14:13:33" itemprop="dateModified" datetime="2019-08-22T14:13:33+08:00">2019-08-22</time>
+                <time title="修改时间：2019-08-26 15:43:50" itemprop="dateModified" datetime="2019-08-26T15:43:50+08:00">2019-08-26</time>
               
             
           </span>
@@ -609,7 +609,9 @@
 <p>要知道 <code>THPVariableClass</code> 这个类型对象声明位于 torch/csrc/autograd/python_variable.h 中</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">THP_API PyObject *THPVariableClass;</span><br></pre></td></tr></table></figure>
 
-<p>嗯，这是一个 extern 声明，其原本定义位于 torch/csrc/autograd/python_variable.cpp 中。好，现在回到 torch.empty 的底层 c++ 实现部分，即上文 THPVariable_empty 函数定义，在 dispatch_empty 返回一个 Variable 对象后，经过 wrap 包装为 PyObject，来看 wrap 的定义，位于 torch/csrc/autograd/utils/wrap_outputs.h 中，其内部调用 THPVariable_Wrap，这个函数也位于 torch/csrc/autograd/python_variable.cpp，与 THPVariableClass 定义在同一个文件中，前面我们已经知道 THPVariableClass 就是 torch/tensor.py 中的 Tensor 类型，而这里 THPVariable_Wrap 通过调用 THPVariable_NewWithVar 将 Variable 对象包装为 THPVariableClass 对象，即 Tensor 实例。</p>
+<p>嗯，这是一个 extern 声明，其原本定义位于 torch/csrc/autograd/python_variable.cpp 中。好，现在回到 torch.empty 的底层 c++ 实现部分，即上文 THPVariable_empty 函数定义，在 dispatch_empty 返回一个 Variable 对象后，经过 wrap 包装为 PyObject，来看 wrap 的定义，位于 torch/csrc/autograd/utils/wrap_outputs.h 中，其内部调用 THPVariable_Wrap，这个函数也位于 torch/csrc/autograd/python_variable.cpp，与 THPVariableClass 定义在同一个文件中，前面我们已经知道 THPVariableClass 就是 torch/tensor.py 中的 Tensor 类型，而这里 THPVariable_Wrap 通过调用 THPVariable_NewWithVar 将 Variable 对象包装为 THPVariableClass 对象，即 Tensor 实例。THPVariable_NewWithVar 函数定义的部分代码为</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> PyObject* <span class="title">THPVariable_NewWithVar</span><span class="params">(PyTypeObject* type, Variable var)</span> </span>&#123;</span><br><span class="line">PyObject *obj=type-&gt;tp_alloc(type, <span class="number">0</span>);      <span class="comment">// 申请 torch.Tensor 所需要的内存</span></span><br><span class="line"><span class="keyword">if</span>(obj) &#123;</span><br><span class="line">    <span class="keyword">auto</span> v = (THPVariable*)obj; <span class="comment">// cast 为 THPVariable 类型指针，即 torch.Tensor 的基类 torch._C._TensorBase 的指针</span></span><br><span class="line">    <span class="keyword">new</span>(&amp;v-&gt;cdata) Variable(<span class="built_in">std</span>::move(var));    <span class="comment">// 指定内存中，移动构造 Variable（C++ 版本的 Tensor）</span></span><br><span class="line">    v-&gt;cdata.set_pyobj(obj);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>示例</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(torch.empty(<span class="number">2</span>,<span class="number">3</span>))</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">torch</span>.<span class="title">Tensor</span>'&gt;</span></span><br></pre></td></tr></table></figure>
 
