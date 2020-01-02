@@ -107,7 +107,7 @@
 <meta property="og:image" content="https://shajianjian.github.io/images/img_cls/densenet_1.png">
 <meta property="og:image" content="https://shajianjian.github.io/images/img_cls/densenet_2.png">
 <meta property="og:image" content="https://shajianjian.github.io/images/img_cls/densenet_3.png">
-<meta property="og:updated_time" content="2020-01-02T06:46:32.619Z">
+<meta property="og:updated_time" content="2020-01-02T06:49:52.501Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DenseNet">
 <meta name="twitter:description" content="论文 Densely Connected Convolutional Networks 随着现在数据集越来越大，网络容量也需要增大，否则容易出现过拟合现象，一种增大网络容量的方法是增加更多的 layer ，让网络更深（deep），但是这也会带来新的问题：随着输入（或梯度）经过越来越多的 layer，信息可能在到达最后一层（对于梯度则是反向传播在到达网络第一层）之前就消失了。ResNet 增加 sh">
@@ -405,7 +405,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-02 14:46:32" itemprop="dateModified" datetime="2020-01-02T14:46:32+08:00">2020-01-02</time>
+                <time title="修改时间：2020-01-02 14:49:52" itemprop="dateModified" datetime="2020-01-02T14:49:52+08:00">2020-01-02</time>
               
             
           </span>
@@ -830,7 +830,7 @@
   
 
 
-  <script src="/js/next-boot.js?v=7.1.2"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/js/next-boot.js?v=7.1.2"></script>
 
 
   
@@ -860,6 +860,46 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
   
 
 
