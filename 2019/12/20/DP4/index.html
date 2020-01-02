@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="来看一个 c++ 程序片段 12// test.cppint f(int i) &amp;#123; return 0; &amp;#125;  编译 1gcc test.cpp -o test.o  查看 f 的 low-level assembler 名称（name mangling）， 123nm test.o | grep f// 输出// 000000000000008b T _Z4fi  逆过程为 1">
-<meta name="keywords" content="c++">
+  <meta name="description" content="1. 库存问题一产品可通过生产或者购买获得，获得产品需要一定的成本，然后产品随着时间也会逐步被消耗掉。产品的库存也伴随着存储成本，而当需求未得到满足（供应不足，某个阶段库存为负表示消耗需求未得到满足）时也有一个惩罚损失。 使用 N-阶 序列决策过程来表述以上库存问题，在阶段 k 作出决策获得 x 单位的产品，损耗为 $C(k,x)$，状态为 $(k,s)$，表示在阶段 k 的库存数量为 s。$D(">
+<meta name="keywords" content="math,DP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cpp-aux-tools">
-<meta property="og:url" content="https://shajianjian.github.io/2019/07/11/cpp-aux-tools/index.html">
+<meta property="og:title" content="Dynamic Programming (3)">
+<meta property="og:url" content="https://shajianjian.github.io/2019/12/20/DP4/index.html">
 <meta property="og:site_name" content="SJJ">
-<meta property="og:description" content="来看一个 c++ 程序片段 12// test.cppint f(int i) &amp;#123; return 0; &amp;#125;  编译 1gcc test.cpp -o test.o  查看 f 的 low-level assembler 名称（name mangling）， 123nm test.o | grep f// 输出// 000000000000008b T _Z4fi  逆过程为 1">
+<meta property="og:description" content="1. 库存问题一产品可通过生产或者购买获得，获得产品需要一定的成本，然后产品随着时间也会逐步被消耗掉。产品的库存也伴随着存储成本，而当需求未得到满足（供应不足，某个阶段库存为负表示消耗需求未得到满足）时也有一个惩罚损失。 使用 N-阶 序列决策过程来表述以上库存问题，在阶段 k 作出决策获得 x 单位的产品，损耗为 $C(k,x)$，状态为 $(k,s)$，表示在阶段 k 的库存数量为 s。$D(">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-26T07:38:02.442Z">
+<meta property="og:updated_time" content="2019-12-20T12:41:33.601Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cpp-aux-tools">
-<meta name="twitter:description" content="来看一个 c++ 程序片段 12// test.cppint f(int i) &amp;#123; return 0; &amp;#125;  编译 1gcc test.cpp -o test.o  查看 f 的 low-level assembler 名称（name mangling）， 123nm test.o | grep f// 输出// 000000000000008b T _Z4fi  逆过程为 1">
+<meta name="twitter:title" content="Dynamic Programming (3)">
+<meta name="twitter:description" content="1. 库存问题一产品可通过生产或者购买获得，获得产品需要一定的成本，然后产品随着时间也会逐步被消耗掉。产品的库存也伴随着存储成本，而当需求未得到满足（供应不足，某个阶段库存为负表示消耗需求未得到满足）时也有一个惩罚损失。 使用 N-阶 序列决策过程来表述以上库存问题，在阶段 k 作出决策获得 x 单位的产品，损耗为 $C(k,x)$，状态为 $(k,s)$，表示在阶段 k 的库存数量为 s。$D(">
 
 
 
@@ -115,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="https://shajianjian.github.io/2019/07/11/cpp-aux-tools/">
+  <link rel="canonical" href="https://shajianjian.github.io/2019/12/20/DP4/">
 
 
 
@@ -125,7 +125,7 @@
   };
 </script>
 
-  <title>cpp-aux-tools | SJJ</title>
+  <title>Dynamic Programming (3) | SJJ</title>
   
 
 
@@ -341,7 +341,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shajianjian.github.io/2019/07/11/cpp-aux-tools/">
+    <link itemprop="mainEntityOfPage" href="https://shajianjian.github.io/2019/12/20/DP4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shajianjian">
@@ -358,7 +358,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">cpp-aux-tools
+          <h1 class="post-title" itemprop="name headline">Dynamic Programming (3)
 
               
             
@@ -384,24 +384,12 @@
                 
               
 
-              <time title="创建时间：2019-07-11 19:16:23" itemprop="dateCreated datePublished" datetime="2019-07-11T19:16:23+08:00">2019-07-11</time>
+              <time title="创建时间：2019-12-20 20:13:18 / 修改时间：20:41:33" itemprop="dateCreated datePublished" datetime="2019-12-20T20:13:18+08:00">2019-12-20</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-26 15:38:02" itemprop="dateModified" datetime="2019-07-26T15:38:02+08:00">2019-07-26</time>
               
             
           </span>
@@ -435,18 +423,8 @@
       
 
       
-        <p>来看一个 c++ 程序片段</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// test.cpp</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123; <span class="keyword">return</span> <span class="number">0</span>; &#125;</span><br></pre></td></tr></table></figure>
-
-<p>编译</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc test.cpp -o test.o</span><br></pre></td></tr></table></figure>
-
-<p>查看 f 的 low-level assembler 名称（name mangling），</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nm test.o | grep f</span><br><span class="line">// 输出</span><br><span class="line">// 000000000000008b T _Z4fi</span><br></pre></td></tr></table></figure>
-
-<p>逆过程为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c++filt -n _Z4fi</span><br><span class="line">// 输出</span><br><span class="line">// f(int)</span><br></pre></td></tr></table></figure>
-
+        <h2 id="1-库存问题"><a href="#1-库存问题" class="headerlink" title="1. 库存问题"></a>1. 库存问题</h2><p>一产品可通过生产或者购买获得，获得产品需要一定的成本，然后产品随着时间也会逐步被消耗掉。产品的库存也伴随着存储成本，而当需求未得到满足（供应不足，某个阶段库存为负表示消耗需求未得到满足）时也有一个惩罚损失。</p>
+<p>使用 N-阶 序列决策过程来表述以上库存问题，在阶段 <code>k</code> 作出决策获得 <code>x</code> 单位的产品，损耗为 $C(k,x)$，状态为 $(k,s)$，表示在阶段 <code>k</code> 的库存数量为 <code>s</code>。$D(k)$ 表示在阶段 <code>k</code> 对产品的消耗需求，于是下一阶段状态为 $(k+1,s+x-D(k))$，这一状态转移过程的损耗包括获得产品的成本 $C(k,x)$，以及库存存储成本 $I(k,s,x), \ s&gt;0$，如果库存数量为负表示此阶段的消耗需求未得到满足，此时 $|s|$ 表示缺货的数量，所以惩罚损耗为 $I(k,s,x), \ s &lt; 0$，</p>
 
       
     </div>
@@ -473,7 +451,9 @@
         
         <div class="post-tags">
           
-            <a href="/tags/c/" rel="tag"># c++</a>
+            <a href="/tags/math/" rel="tag"># math</a>
+          
+            <a href="/tags/DP/" rel="tag"># DP</a>
           
         </div>
       
@@ -486,8 +466,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/08/mask-rcnn/" rel="next" title="mask-rcnn">
-                <i class="fa fa-chevron-left"></i> mask-rcnn
+              <a href="/2019/12/07/DIP-2/" rel="next" title="数字图像处理（二）">
+                <i class="fa fa-chevron-left"></i> 数字图像处理（二）
               </a>
             
           </div>
@@ -496,8 +476,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/15/DeRPN/" rel="prev" title="DeRPN">
-                DeRPN <i class="fa fa-chevron-right"></i>
+              <a href="/2019/12/31/img_cls/densenet/" rel="prev" title="DenseNet">
+                DenseNet <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -542,8 +522,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -643,6 +632,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-库存问题"><span class="nav-number">1.</span> <span class="nav-text">1. 库存问题</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -781,7 +787,7 @@
   
 
 
-  <script src="/js/next-boot.js?v=7.1.2"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/js/next-boot.js?v=7.1.2"></script>
 
 
   
@@ -811,6 +817,46 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
   
 
 
