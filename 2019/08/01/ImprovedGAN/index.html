@@ -1,129 +1,50 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="zh-CN">
+<head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shajianjian.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
-
-<link rel="stylesheet" href="/css/main.css?v=7.1.2">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
-
-
-
-
-
-
-
-<script id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.1.2',
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
-    back2top: true,
-    back2top_sidebar: false,
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="description" content="标题 Improved Techniques for Training GANs 源码 improved_gan 简介GAN 是基于博弈论学习生成模型的一类方法总称。GAN 目的是训练一个生成网络其生成样本的分布可以拟合真实数据分布。虽然 DCGAN 在 GAN 中引入 conv+BN+ReLU 在一定程度上改善了生成器，但是我们认为 GAN 这个零和博弈问题具有高维参数且非凸，需要达到 Nash">
-<meta name="keywords" content="GAN">
+  <meta name="description" content="标题 Improved Techniques for Training GANs 源码 improved_gan">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ImprovedGAN">
 <meta property="og:url" content="https://shajianjian.github.io/2019/08/01/ImprovedGAN/index.html">
 <meta property="og:site_name" content="SJJ">
-<meta property="og:description" content="标题 Improved Techniques for Training GANs 源码 improved_gan 简介GAN 是基于博弈论学习生成模型的一类方法总称。GAN 目的是训练一个生成网络其生成样本的分布可以拟合真实数据分布。虽然 DCGAN 在 GAN 中引入 conv+BN+ReLU 在一定程度上改善了生成器，但是我们认为 GAN 这个零和博弈问题具有高维参数且非凸，需要达到 Nash">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="标题 Improved Techniques for Training GANs 源码 improved_gan">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://shajianjian.github.io/images/ImprovedGAN_fig1.png">
-<meta property="og:updated_time" content="2019-08-16T11:08:24.220Z">
+<meta property="article:published_time" content="2019-08-01T07:48:46.000Z">
+<meta property="article:modified_time" content="2020-04-24T10:38:18.844Z">
+<meta property="article:author" content="shajianjian">
+<meta property="article:tag" content="GAN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ImprovedGAN">
-<meta name="twitter:description" content="标题 Improved Techniques for Training GANs 源码 improved_gan 简介GAN 是基于博弈论学习生成模型的一类方法总称。GAN 目的是训练一个生成网络其生成样本的分布可以拟合真实数据分布。虽然 DCGAN 在 GAN 中引入 conv+BN+ReLU 在一定程度上改善了生成器，但是我们认为 GAN 这个零和博弈问题具有高维参数且非凸，需要达到 Nash">
 <meta name="twitter:image" content="https://shajianjian.github.io/images/ImprovedGAN_fig1.png">
 
+<link rel="canonical" href="https://shajianjian.github.io/2019/08/01/ImprovedGAN/">
 
 
-
-
-  
-  
-  <link rel="canonical" href="https://shajianjian.github.io/2019/08/01/ImprovedGAN/">
-
-
-
-<script id="page.configurations">
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
   };
 </script>
 
@@ -135,15 +56,8 @@
 
 
 
-
-
-
-
-
-
   <noscript>
   <style>
-  .use-motion .motion-element,
   .use-motion .brand,
   .use-motion .menu-item,
   .sidebar-inner,
@@ -152,9 +66,8 @@
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
+  .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .logo,
   .use-motion .site-title,
   .use-motion .site-subtitle {
     opacity: initial;
@@ -168,146 +81,68 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
-    
-  
-
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">SJJ</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
-    
-    
   </div>
 
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">SJJ</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
 
 
+
 <nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-about">
+        <li class="menu-item menu-item-about">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
+        <li class="menu-item menu-item-tags">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
+        <li class="menu-item menu-item-categories">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-archives">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
-
-      
-      
-    </ul>
-  
-
-  
-
-  
+  </ul>
 </nav>
 
-
-
-  
 
 
 
@@ -315,118 +150,61 @@
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
 
-    <main id="main" class="main">
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
           
+
+          <div class="content post posts-expand">
             
 
-          
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
     
-
-  
-
   
   
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://shajianjian.github.io/2019/08/01/ImprovedGAN/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shajianjian">
-      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="shajianjian">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="SJJ">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">ImprovedGAN
-
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          ImprovedGAN
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">发表于</span>
 
               <time title="创建时间：2019-08-01 15:48:46" itemprop="dateCreated datePublished" datetime="2019-08-01T15:48:46+08:00">2019-08-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-16 19:08:24" itemprop="dateModified" datetime="2019-08-16T19:08:24+08:00">2019-08-16</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-24 18:38:18" itemprop="dateModified" datetime="2020-04-24T18:38:18+08:00">2020-04-24</time>
+              </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -434,11 +212,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
         <p>标题 <a href="https://arxiv.org/abs/1606.03498" target="_blank" rel="noopener">Improved Techniques for Training GANs</a></p>
 <p>源码 <a href="https://github.com/openai/improved_gan" target="_blank" rel="noopener">improved_gan</a></p>
+<a id="more"></a>
 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>GAN 是基于博弈论学习生成模型的一类方法总称。GAN 目的是训练一个生成网络其生成样本的分布可以拟合真实数据分布。虽然 <a href="2019/07/23/GAN">DCGAN</a> 在 GAN 中引入 conv+BN+ReLU 在一定程度上改善了生成器，但是我们认为 GAN 这个零和博弈问题具有高维参数且非凸，需要达到 Nash 均衡才是最佳解，而传统的基于目标函数梯度下降方法目的并非用于寻找 Nash 均衡。本文提出了以下改进方法：</p>
 <ol>
 <li>特征匹配</li>
@@ -450,7 +226,7 @@
 <h2 id="小批量判别"><a href="#小批量判别" class="headerlink" title="小批量判别"></a>小批量判别</h2><p>GAN 训练失败的原因之一是生成器训练时总是会陷入一组参数无法逃脱，我这里称其为“陷入点”，当临近“陷入点”时，生成器的输出点总是很相似，而这些相似的点会让判别器总是指向一个差不多的方向，由于判别器 <strong>独立处理</strong> 每个样本，这些样本对应的梯度相互之间无法合作，缺乏一种反馈机制去通知生成器让其输出相互之间尽可能不相似，生成器所有的输出都向同一个点竞争，这个点是为了让判别器判别为真实的数据，所以结果就是生成器陷入一组模型参数无法自拔，陷入之后，判别器通过学习又能够将这个点判别为来自生成器，但是梯度 <strong>无法区分</strong> 各个不同的输出，于是判别器的梯度会一直在空间中将生成器产生的这个“陷入点”推来推去，导致算法无法收敛。一种显然的解决办法是让判别器不独立处理每个样本，而是一次能看到多个样本的合并，这就是小批量判别方法。</p>
 <p>现在我们的实验建模瞄准于区分生成器的各个相互靠得很近得样本。小批量中样本之间接近程度按如下方法计算：<br>令 $\mathbf {f(x_i)} \in \Bbb R^A$ 表示输入 $\mathbf x_i$ 对应的特征向量，这个特征由 D 网络中间层产生，然后将特征向量乘以一个张量 $T \in \Bbb R^{A \times B \times C}$，结果是一个矩阵 $M_i \in \Bbb R^{B \times C}$，对于输入样本编号 $i \in {1,…,n}$，得到对应的矩阵 ${M_i |i=1,…,n}$，计算两两矩阵的各行向量之间的 L1 距离，然后应用负指数函数，<br>$$c_b(\mathbf x_i, \mathbf x_j)=\exp(-|M_{i,b}-M_{j,b}| _ {L_1}) \in \Bbb R, \quad i,j \in {1,…,n}, \quad b \in {1,…,B}$$</p>
 <p>其中下标 b 表示 row index。如图 1，minibatch layer 中样本 $\mathbf x_i$ 对应的输出定义为，<br>$$\begin{aligned} &amp;o(\mathbf x_i) _ b = \sum_{j=1}^n c _ b(\mathbf x_i, \mathbf x_j) \in \Bbb R<br>\\ &amp;o(\mathbf x_i)=\left[o(\mathbf x_i) _ 1,…o(\mathbf x_i) _ B \right] \in \Bbb R^B<br>\\ &amp;o(\mathbf X) \in \Bbb R^{n \times B} \end{aligned}$$</p>
-<p>然后，将 minibatch layer 的输出 $o(\mathbf x_i)$ 与 minibatch layer 的输入 $\mathbf {f(x_i)}$ concatenate 起来，作为 D 的下一 layer 的输入。对生成样本和训练数据分别计算 minibatch layer 特征。<br><img src="/images/ImprovedGAN_fig1.png" alt></p>
+<p>然后，将 minibatch layer 的输出 $o(\mathbf x_i)$ 与 minibatch layer 的输入 $\mathbf {f(x_i)}$ concatenate 起来，作为 D 的下一 layer 的输入。对生成样本和训练数据分别计算 minibatch layer 特征。<br><img src="/images/ImprovedGAN_fig1.png" alt=""></p>
 <h2 id="历史平均"><a href="#历史平均" class="headerlink" title="历史平均"></a>历史平均</h2><p>修改每个玩家（G 和 D）的损失使得包含 $|\mathbf \theta -\frac 1 t \sum_{i=1}^t \theta[i]|^2$，其中 $\theta[i]$ 是历史时期 i 的参数值。</p>
 <h2 id="单边标注平滑"><a href="#单边标注平滑" class="headerlink" title="单边标注平滑"></a>单边标注平滑</h2><p>Label 平滑，就是将分类器的 target 值由 0 和 1 替换为一个平滑的值如 0.9 或 0.1。我们将正例 target 替换为 $\alpha$，负例 target 替换为 $\beta$，那么最佳判别器变为<br>$$D(\mathbf x)=\frac {\alpha p_{data}(\mathbf x) + \beta p_{model}(\mathbf x)}{p_{data}(\mathbf x)+p_{model}(\mathbf x)}$$</p>
 <ul>
@@ -470,304 +246,152 @@
 <p>最小化 $L_{supervised}$ 和 $L_{unsupervised}$ 的最优解是满足 $\exp[l_j(\mathbf x)]=c(\mathbf x) p(y=j,\mathbf x), \ \forall j \in K+1$ 以及 $\exp[l_{K+1}(\mathbf x)]=c(\mathbf x) p_G(\mathbf x)$，其中 $c(\mathbf x)$ 是待定的系数函数。训练 G 以近似真实的数据分布，一种训练方法是最小化 GAN objective，使用这里的分类器作为判别器 D，这种方法引入了 G 和分类器之间的相互作用，经验表明，在半监督学习中，使用特征匹配 GAN 可以很好的优化 G。</p>
 <p>分类器输出维度为 K+1 是过参数化的，由于输出向量中每个元素值均减去同一个值 $l_j(\mathbf x)\leftarrow l_j(\mathbf x)-f(\mathbf x)$，对 softmax 的值并不影响，所以可固定 $l_{K+1}(\mathbf x)=0, \ \forall \mathbf x$，于是 $L_{supervised}$ 变为具有 K 个类别的原始分类器的标准监督损失，此时判别器 D 为 $D(\mathbf x)=\frac {Z(\mathbf x)} {Z(\mathbf x)+1}$，其中 $Z(\mathbf x)=\sum_{k=1}^K \exp [l_k(\mathbf x)]$。</p>
 
-      
     </div>
 
     
-
-    
-    
-    
-
-    
-
-    
-      
     
     
 
-    
-
-    <footer class="post-footer">
-      
-        
-          
-        
-        <div class="post-tags">
-          
-            <a href="/tags/GAN/" rel="tag"># GAN</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/07/29/CGAN/" rel="next" title="CGAN/DCGAN">
-                <i class="fa fa-chevron-left"></i> CGAN/DCGAN
-              </a>
-            
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/GAN/" rel="tag"># GAN</a>
           </div>
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/07/DP1/" rel="prev" title="Dynamic Programming (1)">
-                Dynamic Programming (1) <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
 
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/07/29/CGAN/" rel="prev" title="CGAN/DCGAN">
+      <i class="fa fa-chevron-left"></i> CGAN/DCGAN
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/08/07/dp/DP1/" rel="next" title="Dynamic Programming (1)">
+      Dynamic Programming (1) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
   </article>
+  
+  
+  
 
-
-  </div>
 
 
           </div>
           
-
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">shajianjian</p>
-              <div class="site-description motion-element" itemprop="description"></div>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">41</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  
-                    
-                      <a href="/categories/">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">2</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                      <a href="/tags/">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">11</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </div>
-
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GAN-训练收敛"><span class="nav-number">2.</span> <span class="nav-text">GAN 训练收敛</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#特征匹配"><span class="nav-number">2.1.</span> <span class="nav-text">特征匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小批量判别"><span class="nav-number">2.2.</span> <span class="nav-text">小批量判别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#历史平均"><span class="nav-number">2.3.</span> <span class="nav-text">历史平均</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单边标注平滑"><span class="nav-number">2.4.</span> <span class="nav-text">单边标注平滑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟批归一化"><span class="nav-number">2.5.</span> <span class="nav-text">虚拟批归一化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图像质量评估"><span class="nav-number">3.</span> <span class="nav-text">图像质量评估</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#半监督学习"><span class="nav-number">4.</span> <span class="nav-text">半监督学习</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-  
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">shajianjian</span>
-
-  
-
-  
-</div>
-
-
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.2</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
 
 <script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
   }
 </script>
 
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GAN-训练收敛"><span class="nav-number">2.</span> <span class="nav-text">GAN 训练收敛</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#特征匹配"><span class="nav-number">2.1.</span> <span class="nav-text">特征匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小批量判别"><span class="nav-number">2.2.</span> <span class="nav-text">小批量判别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#历史平均"><span class="nav-number">2.3.</span> <span class="nav-text">历史平均</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单边标注平滑"><span class="nav-number">2.4.</span> <span class="nav-text">单边标注平滑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟批归一化"><span class="nav-number">2.5.</span> <span class="nav-text">虚拟批归一化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图像质量评估"><span class="nav-number">3.</span> <span class="nav-text">图像质量评估</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#半监督学习"><span class="nav-number">4.</span> <span class="nav-text">半监督学习</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">shajianjian</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shajianjian</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
 
 
 
@@ -776,8 +400,29 @@
 
 
 
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
 
 
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
 
 
 
@@ -794,135 +439,61 @@
 
 
   
-  <script src="/lib/jquery/index.js?v=3.4.1"></script>
 
   
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-
-  
-
-
-  <script src="/js/utils.js?v=7.1.2"></script>
-
-  <script src="/js/motion.js?v=7.1.2"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/affix.js?v=7.1.2"></script>
-
-  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
-
-
-
-  
-  <script src="/js/scrollspy.js?v=7.1.2"></script>
-<script src="/js/post-details.js?v=7.1.2"></script>
-
-
-
-  
-
-
-  <script src="/js/next-boot.js?v=7.1.2"></script>
-
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-
-  
-
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
-
-  
-    
-      <script type="text/x-mathjax-config">
-  
-
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
       
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
-        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
-      }
-    });
-  });
-</script>
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
-    }
-  });
-</script>
-<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
     
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
   
 
