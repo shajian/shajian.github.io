@@ -28,7 +28,7 @@
 <meta property="og:description" content="继上一篇 loss 1，本篇介绍 PyTorch 的其他损失。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-01-13T08:54:38.000Z">
-<meta property="article:modified_time" content="2021-01-15T04:00:11.294Z">
+<meta property="article:modified_time" content="2021-01-15T07:12:11.771Z">
 <meta property="article:author" content="shajianjian">
 <meta property="article:tag" content="PyTorch">
 <meta name="twitter:card" content="summary">
@@ -196,7 +196,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-15 12:00:11" itemprop="dateModified" datetime="2021-01-15T12:00:11+08:00">2021-01-15</time>
+                <time title="修改时间：2021-01-15 15:12:11" itemprop="dateModified" datetime="2021-01-15T15:12:11+08:00">2021-01-15</time>
               </span>
 
           
@@ -242,7 +242,8 @@
 <h1 id="HingeEmbeddingLoss"><a href="#HingeEmbeddingLoss" class="headerlink" title="HingeEmbeddingLoss"></a>HingeEmbeddingLoss</h1><p>$x$ 表示距离（例如 L1 范数），$y \in {1,-1}$ 标识是相似还是相反，损失为，<br>$$l = \begin{cases} x &amp; y=1 \ \max(0, d-x) &amp; y=-1 \end{cases}$$<br>其中 $d$ 为 margin。</p>
 <p>输入 x 和 y 的 shape 均为任意维度 $(<em>)$，输出未归约的 shape 也是 $(</em>)$，否则为一标量。</p>
 <h1 id="CosineEmbeddingLoss"><a href="#CosineEmbeddingLoss" class="headerlink" title="CosineEmbeddingLoss"></a>CosineEmbeddingLoss</h1><p><code>y=1</code> 表示两个（归一化）向量应该相近，<code>y=-1</code> 表示应该相差很远。<br>损失如下，<br>$$l=\begin{cases} 1- \cos(x_1,x_2) &amp; y=1 \ \max[0, \cos(x_1,x_2) - d] &amp; y=-1 \end{cases}$$<br>其中 $d$ 表示 margin，默认为 0。</p>
-<h1 id="CTCLoss"><a href="#CTCLoss" class="headerlink" title="CTCLoss"></a>CTCLoss</h1>
+<h1 id="CTCLoss"><a href="#CTCLoss" class="headerlink" title="CTCLoss"></a>CTCLoss</h1><p>参考文献 <a href="https://www.cs.toronto.edu/~graves/icml_2006.pdf" target="_blank" rel="noopener">Connectionist Temporal Classification: Labelling Unsegmented Sequence Data with Recurrent Neural Networks</a><br>RNN 相关的应用领域暂未涉及。略，以后填坑。</p>
+
     </div>
 
     
@@ -263,7 +264,10 @@
     <a href="/2021/01/12/pytorch/loss_1/" rel="prev" title="Loss 1">
       <i class="fa fa-chevron-left"></i> Loss 1
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/19/img_cls/resnet/" rel="next" title="img_cls/resnet.md">
+      img_cls/resnet.md <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -336,7 +340,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -349,7 +353,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
